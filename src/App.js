@@ -6,6 +6,7 @@ import reducers  from './reducers';
 import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
 
+store = createStore(reducers)
 
 class App extends Component {
 	componentWillMount() {
@@ -22,7 +23,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<Provider store={createStore(reducers)}>
+			<Provider store={ store }>
 				<LoginForm />
 			</Provider>
 		);
