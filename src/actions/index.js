@@ -1,3 +1,14 @@
+//Action Creator Rules
+//- Action creatroes are functions
+//-Must return action
+//-An action is an object with a 'type' property
+
+//Action Creatro Rules with Thunk
+// The above rules OR
+//-action creators are functions
+//-must return a function <--new
+//-this function will be called with 'dispatch'
+
 import firebase from 'firebase';
 import { EMAIL_CHANGED,
 		 PASSWORD_CHANGED 
@@ -19,5 +30,9 @@ export const passwordChanged = (text) => {
 };
 
 export const loginUser = ({ email, password }) => {
-	firebase.auth.signInWithEmailAndPassword(email, password).then(user => console.log(user));
+	return (dispatch) => {
+		firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
+			dispatch({ type: 'LOGIN_USER_SUCCESS', payload: user });
+		});
+	};
 };

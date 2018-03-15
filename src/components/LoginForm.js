@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged } from '../actions'; 
+import { emailChanged, passwordChanged, loginUser } from '../actions'; 
 import { Card, CardSection, Input, Button } from './common';
 
 //create action creator when user does something
@@ -13,6 +13,11 @@ class LoginForm extends Component {
 		this.props.passwordChanged(text);
 	}
 
+	onButtonPress() {
+		const { email, password } = this.props;
+
+		this.props.loginUser( { email, password });
+	}
 
 	render() {
 		return (
@@ -36,7 +41,7 @@ class LoginForm extends Component {
 				</CardSection>
 
 				<CardSection>
-					<Button>
+					<Button onPress={this.onButtonPress.bind(this)}>
 						Login
 					</Button>
 				</CardSection>
@@ -52,4 +57,4 @@ const mapsStateToProps = state => {
 	};
 };
 
-export default connect(mapsStateToProps, { emailChanged, passwordChanged }) (LoginForm);
+export default connect(mapsStateToProps, { emailChanged, passwordChanged, loginUser }) (LoginForm);
