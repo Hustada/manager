@@ -5,7 +5,7 @@ import { View } from 'react-native';
 // if you pass one component to another it will show up as 'props.children'
 const CardSection = (props) => {
 	return (
-		<View style={styles.containerStyle}>
+		<View style={[styles.containerStyle, props.style]}>
 			{props.children}
 		</View>
 	);
